@@ -79,7 +79,7 @@
                 <th>Adresa</th>
                 <th>Grad</th>
                 <th>Zaduženje</th>
-                <th>Razduđi</th>
+                <th>Razduži</th>
             </tr>
         </thead>
         <tbody>

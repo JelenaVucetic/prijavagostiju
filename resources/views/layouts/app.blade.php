@@ -64,11 +64,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         @auth
-                            <li>
+                            <li style="display:flex">
                             <p>Prijavljeni ste kao: {{Auth::user()->name}}</p>
-                                <a  href="{{ route('logout') }}"
+                                <a  style="margin: 0 20px;color: inherit;" href="{{ route('logout') }}"
                                     >
-                                    {{ __('Logout') }}
+                                   Odjavi me
                                 </a>
                             </li>
                         @endauth

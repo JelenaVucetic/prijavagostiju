@@ -112,6 +112,43 @@
     </form>
   </div>
 {{-- End of Edit Modal --}}
+{{-- Delete modal --}}
+
+<div class="modal fade" id="deleteLandlordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="delete-landlord-form" method="post" >
+      @csrf
+      @method('DELETE')
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Da li ste sigurni da želite da obrišete stanodavca?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="firstname_landlord">Ime</label>
+              <input type="text" name="" id="firstname_landlord" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+          <div class="form-group">
+              <label for="lastname_landlord">Prezime</label>
+              <input type="text" name="" id="lastname_landlord" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+          <div class="form-group">
+              <label for="jmbg_landlord">JMBG</label>
+              <input type="text" name="" id="jmbg_landlord" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" class="btn btn-primary  confirm-delete-landlord-btn">Da</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+{{-- End of Delete Modal --}}
 
 <div class="container">
     @if(session()->has('message'))
@@ -168,11 +205,13 @@
                     </button>
                 </td>        
                 <td>
-                    <form action="{{ route('landlords.destroy', $landlord->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Izbriši</button>
-                    </form>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteLandlordModal" 
+                                    data-id="{{$landlord->id}}"
+                                    data-firstname="{{$landlord->firstname}}"
+                                    data-lastname="{{$landlord->lastname}}"
+                                    data-jmbg="{{$landlord->jmbg}}">
+                                    Izbriši
+                    </button>
                 </td>
                       
                      

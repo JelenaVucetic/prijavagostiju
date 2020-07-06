@@ -138,6 +138,45 @@
   </div>
 {{-- End of Edit Modal --}}
 
+{{-- Delete modal --}}
+
+<div class="modal fade" id="deleteGuestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form id="delete-guest-form" method="post" >
+        @csrf
+        @method('DELETE')
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Da li ste sigurni da želite da obrišete gosta?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="firstname_delete">Ime</label>
+                <input type="text" name="" id="firstname_delete" disabled style="float: right;width: 50%;border-radius: 5px;">
+            </div>
+            <div class="form-group">
+                <label for="lastname_delete">Prezime</label>
+                <input type="text" name="" id="lastname_delete" disabled style="float: right;width: 50%;border-radius: 5px;">
+            </div>
+            <div class="form-group">
+                <label for="travel_document_number_delete">Broj putne isprave</label>
+                <input type="text" name="" id="travel_document_number_delete" disabled style="float: right;width: 50%;border-radius: 5px;">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+          <button type="button" class="btn btn-primary  confirm-delete-guest-btn">Da</button>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+{{-- End of Delete Modal --}}
+
+
 <div class="container">
     @if(session()->has('message'))
     <div class="alert alert-success">
@@ -201,11 +240,12 @@
                     </button>
                 </td>        
                 <td>
-                    <form action="{{ route('guests.destroy', $guest->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Izbriši</button>
-                    </form>
+
+                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteGuestModal"
+                            data-id="{{$guest->id}}"3
+                            data-firstname="{{$guest->firstname}}"
+                            data-lastname="{{$guest->lastname}}"
+                            data-docnumber="{{$guest->travel_document_number}}">Izbriši</button>
                 </td>
                       
                      

@@ -217,6 +217,56 @@ $('#editDebtModal').on('show.bs.modal', function (event) {
   })
 });
 
+$('#deleteGuestModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var firstname = button.data('firstname') // Extract info from data-* attributes3
+    var id = button.data('id')
+    var lastname = button.data('lastname')
+    var docnumber = button.data('docnumber')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #firstname_delete').val(firstname) 
+     modal.find('.modal-body #lastname_delete').val(lastname) 
+     modal.find('.modal-body #travel_document_number_delete').val(docnumber) 
+
+     modal.find('.confirm-delete-guest-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/guests/' + id,
+            form = $('#delete-guest-form'); // change with your form
+    
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
+$('#deleteLandlordModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var firstname = button.data('firstname') // Extract info from data-* attributes3
+    var id = button.data('id')
+    var lastname = button.data('lastname')
+    var jmbg = button.data('jmbg')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #firstname_landlord').val(firstname) 
+     modal.find('.modal-body #lastname_landlord').val(lastname) 
+     modal.find('.modal-body #jmbg_landlord').val(jmbg) 
+
+     modal.find('.confirm-delete-landlord-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/landlords/' + id,
+            form = $('#delete-landlord-form'); // change with your form
+    
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
 var number = $('#number').val();
   
 var names = [];
