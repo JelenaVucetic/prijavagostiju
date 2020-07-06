@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Landlord;
+use App\City;
 use DateTime;
 use DatePeriod;
 use Carbon\Carbon;
@@ -47,6 +48,7 @@ class InformantController extends Controller
                 'guest_id' => $request->guset_id,
                 'price' => 0
             ]);
+    
             return redirect('/renting')->with('message', 'uspješno ste prijavili gosta.');
         } else {
             $today = (int)Carbon::now()->format('Y');
@@ -71,9 +73,16 @@ class InformantController extends Controller
                 'guest_id' => $request->guset_id,
                 'price' => $payment
             ]);
+
+            $lan = DB::table('landlords')
+            ->where('id', $request->landlord_id)->first();
+            $newDebt =  $lan->debt + $payment;
+
+            DB::table('landlords')->where('id', $request->landlord_id)->update(['debt' => $newDebt]);
             return redirect('/renting')->with('message', 'uspješno ste prijavili gosta.');
         }
     }
+    
 
     public function renting() {
         $rents = DB::table('debts')
@@ -92,5 +101,27 @@ class InformantController extends Controller
 ;
         DB::table('debts')->where('debts.id', $request->rent_id)->delete();
         return back()->with('message', "Uspješno obrisano.");
+    }
+
+    public function showDebt() {
+        $cities = City::all();
+        $landlords = DB::table('landlords')
+                ->join('debts', 'landlords.id', 'debts.landlord_id')
+                ->join('cities', 'landlords.city_id', 'cities.id')
+                ->select('landlords.*','debts.price','debts.id as debtId','cities.name', 'cities.id as cityId',DB::raw("SUM(debts.price) as total"))
+                ->groupBy('landlords.id')
+                ->get();
+
+        return view('informant.show_debt', compact('landlords', 'cities'));
+    }
+
+    public function payoff(Request $request) {
+        $total = $request->totalNew;
+        $amount = $request->amount;
+        $newTotal = $total-$amount;
+        $debts = DB::table('landlords')
+              ->where('id', $request->landlordid)
+              ->update(['debt' => $newTotal]);
+    return back()->with('message', 'Uspješno');
     }
 }

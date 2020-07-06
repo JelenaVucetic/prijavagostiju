@@ -47,7 +47,7 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 3:
-                $this->redirectTo = '/inspector';
+                $this->redirectTo = route('inspectorDebt');
                 return $this->redirectTo;
                 break;
             default:

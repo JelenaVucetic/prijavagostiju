@@ -21,6 +21,14 @@ $(document).ready(function() {
     $('#renting-table').DataTable();
 } );
 
+$(document).ready(function() {
+    $('#debt-table').DataTable();
+} );
+
+$(document).ready(function() {
+    $('#inspector-debt-table').DataTable();
+} );
+
 $('#editModal').on('show.bs.modal', function (event) {
     
     var button = $(event.relatedTarget) // Button that triggered the modal
@@ -169,4 +177,90 @@ $('#editLandlordModal').on('show.bs.modal', function (event) {
         form.attr('action', submitUrl);
         form.submit();
   })
+});
+
+$('#editDebtModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var firstname = button.data('firstname') // Extract info from data-* attributes3
+    var lastname = button.data('lastname')
+    var id = button.data('id')
+    var cityId = button.data('city')
+    var cityName = button.data('name')
+    var birth = button.data('birth')
+    var jmbg = button.data('jmbg')
+    var address = button.data('address')
+    var total = button.data('total')
+    var debtid = button.data('debtid')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #firstname').val(firstname) 
+     modal.find('.modal-body #lastname').val(lastname) 
+     modal.find('.modal-body #city_id').val(cityId) 
+     modal.find('.modal-body #date_of_birth').val(birth) 
+     modal.find('.modal-body #jmbg').val(jmbg) 
+     modal.find('.modal-body #address').val(address) 
+     modal.find('.modal-body #total').val(total) 
+     modal.find('.modal-body #totalNew').val(total) 
+     modal.find('.modal-body #debtid').val(debtid) 
+     modal.find('.modal-body #landlordid').val(id) 
+
+     modal.find('.confirm-debt-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/payoff/' + id,
+        form = $('#edit-debt-form'); // change with your form
+
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
+var number = $('#number').val();
+  
+var names = [];
+var debt = [];
+for(var c = 0; c < number ; c++){
+    names[c] = $('#landlord'+c).val();
+    debt[c] = $('#debt'+c).val();
+}
+
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: names,
+    datasets: [{
+    label: '# of Votes',
+    data: debt,
+    backgroundColor: [
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)'
+        ],
+        borderColor: [
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)',
+        'rgb(103, 183, 220)'
+        ],
+        borderWidth: 1
+    }]
+    },
+    options: {
+        legend: { display: false },
+        scales: {
+            yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+            }]
+        }
+    }
 });

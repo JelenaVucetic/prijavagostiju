@@ -162,7 +162,15 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->lastname}}</td>
                 <td>{{$user->username}}</td>
-                <td>fjkdsk</td>
+                @if ($user->role == 1)
+                    <td>Admin</td>
+                @endif
+                @if ($user->role == 2)
+                    <td>Informator</td>
+                @endif
+                @if ($user->role == 3)
+                    <td>Inspektor</td>
+                @endif
                 @if ($user->active == 1)
                    <td>Aktivan</td>
                 @else 

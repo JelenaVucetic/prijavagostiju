@@ -45,6 +45,11 @@
                 <a class="navbar-brand" href="{{route('guests.index')}}">Gosti</a>
                 <a class="navbar-brand" href="{{route('landlords.index')}}">Stanodavci</a>
                 <a class="navbar-brand" href="{{route('renting')}}">Iznajmljivanja</a>
+                <a class="navbar-brand" href="{{route('showDebt')}}">Zaduženja</a>
+                @endif
+                @if (Auth::check() && Auth::user()->role == 3)
+                <a class="navbar-brand" href="{{route('inspectorDebt')}}">Zaduženja</a>
+                <a class="navbar-brand" href="{{route('statistic')}}">Statistika</a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -111,5 +116,6 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="/js/myJs.js"></script>
 </html>
