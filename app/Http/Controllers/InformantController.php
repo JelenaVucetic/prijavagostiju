@@ -90,7 +90,7 @@ class InformantController extends Controller
                 ->join('guests', 'guests.id', '=', 'debts.guest_id')
                 ->join('landlords', 'landlords.id', '=', 'debts.landlord_id')
                 ->join('cities', 'cities.id', '=', 'landlords.city_id')
-                ->select('debts.id','users.name as userName','landlords.firstname as lordFirstname','cities.name','guests.firstname as guestFirstname', 'debts.check_in', 'debts.check_out', 'debts.price')
+                ->select('debts.id','users.name as userName','landlords.firstname as lordFirstname','cities.name','guests.firstname as guestFirstname', 'guests.lastname as guestLastname','guests.travel_document_number as guestDocument','debts.check_in', 'debts.check_out', 'debts.price')
                 ->get();
 
 
@@ -98,7 +98,6 @@ class InformantController extends Controller
     }
 
     public function destroy(Request $request) {
-;
         DB::table('debts')->where('debts.id', $request->rent_id)->delete();
         return back()->with('message', "Uspješno obrisano.");
     }

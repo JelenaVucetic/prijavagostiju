@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
 <h1 style="text-align: center;margin:30px 0;">Iznajmljivanja</h1>
     @if(session()->has('message'))
@@ -33,7 +34,8 @@
                 <td>{{$rent->lordFirstname}}</td>
                 <td>{{$rent->name}}</td>
                 <td>{{$rent->guestFirstname}}</td>
-                <td><button class="btn btn-success">Preuzmi</button></td>       
+                <td>
+                    <a href="/generate-pdf/{{$rent->id}}"><button class="btn btn-success">Preuzmi</button></a> </td>       
                 <td>
                     <form action="/renting/destroy/{{$rent->id}}" method="post">
                         @csrf

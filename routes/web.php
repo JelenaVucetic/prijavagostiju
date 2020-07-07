@@ -44,8 +44,10 @@ Route::middleware('informant')->group(function () {
     Route::get('/debt', 'InformantController@showDebt')->name('showDebt');
     Route::post('/debt', 'InformantController@debt')->name('debt');
     Route::post('/payoff/{debt}', 'InformantController@payoff')->name('payoff');
+    Route::get('/generate-pdf/{id}','PDFController@generatePDF');
 });
 
 Route::get('logout', 'Auth\LoginController@logout', function () {
     return abort(404);
 });
+
