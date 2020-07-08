@@ -120,7 +120,35 @@
     </form>
   </div>
 {{-- End of Edit Modal --}}
+{{-- Delete modal --}}
 
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="delete-user-form" method="post" >
+      @csrf
+      @method('DELETE')
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Da li ste sigurni da želite da obrišete korisnika?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="firstname_user">Ime</label>
+              <input type="text" name="" id="firstname_user" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" class="btn btn-primary  confirm-delete-user-btn">Da</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+{{-- End of Delete Modal --}}
 <div class="container">
     @if(session()->has('message'))
     <div class="alert alert-success">
@@ -189,17 +217,26 @@
                     </button>
                 </td>
                 @if ($user->active == 1)
-                    <td><button type="button" class="btn btn-primary">Deaktiviraj</button></td>
+                  <td> 
+                    <form action="/user/deactivate/{{$user->id}}" method="post">
+                          @csrf
+                    <button type="submit" class="btn btn-primary">Deaktiviraj</button>
+                    </form>
+                  </td>
                 @else 
-                    <td><button type="button" class="btn btn-primary">Aktiviraj</button></td>
+                    <td>
+                      <form action="/user/activate/{{$user->id}}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Aktiviraj</button></td>
+                      </form>
+                     
                 @endif
                
                 <td>
-                    <form action="{{ route('users.destroy', $user->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Izbriši</button>
-                    </form>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteUserModal"
+                            data-id="{{$user->id}}"
+                            data-name="{{$user->name}}"
+                            >Izbriši</button>
                 </td>
                       
                      

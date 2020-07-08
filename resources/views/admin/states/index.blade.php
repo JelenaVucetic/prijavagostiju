@@ -60,6 +60,37 @@
   </div>
 {{-- End of Edit Modal --}}
 
+{{-- Delete modal --}}
+
+<div class="modal fade" id="deleteStateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="delete-state-form" method="post" >
+      @csrf
+      @method('DELETE')
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Da li ste sigurni da želite da obrišete ovu državu?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="state_name">Ime</label>
+              <input type="text" name="" id="state_name" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" class="btn btn-primary  confirm-delete-state-btn">Da</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+{{-- End of Delete Modal --}}
+
+
 <div class="container">
     @if(session()->has('message'))
     <div class="alert alert-success">
@@ -97,11 +128,10 @@
                     </button>
                 </td>        
                 <td>
-                    <form action="{{ route('states.destroy', $state->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Izbriši</button>
-                    </form>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteStateModal"
+                                    data-id="{{$state->id}}"
+                                    data-name="{{$state->name}}">
+                                    Izbriši</button>
                 </td>
                       
                      

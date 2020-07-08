@@ -20,17 +20,21 @@ class Informant
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 2) {
+        if (Auth::user()->role == 2  && Auth::user()->active == 1 ) {
             return $next($request);
         }
+        
+         if (Auth::user()->role == 2 && Auth::user()->active == 0) {
+            return back()->with('message-error', "Korisinik nije aktivan");
+        } 
 
-        if (Auth::user()->role == 1) {
+      /*   if (Auth::user()->role == 1) {
             return redirect()->route('admin');
         }
 
         
         if (Auth::user()->role == 3) {
             return redirect()->route('inspector');
-        }
+        } */
     }
 }

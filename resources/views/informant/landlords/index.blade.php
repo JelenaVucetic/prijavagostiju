@@ -174,8 +174,8 @@
                 <th>Prezime</th>
                 <th>Datum rođenja</th>
                 <th>JMBG</th>
-                <th>Adresa</th>
                 <th>Grad</th>
+                <th>Adresa</th>
                 <th>Izmijeni</th>
                 <th>Obriši</th>
             </tr>
@@ -190,12 +190,19 @@
                 <td>{{$landlord->lastname}}</td>
                 <td>{{$landlord->date_of_birth}}</td>             
                 <td>{{$landlord->jmbg}}</td> 
+                @if ($landlord_city->city)
                 <td>{{$landlord_city->city->name}}</td>
+                @else 
+                <td style="color:red">Dodajte grad</td>
+                @endif
+             
                 <td>{{$landlord->address}}</td>
                 <td>
                     <button type="button" class="btn btn-info test"  data-toggle="modal" data-target="#editLandlordModal" 
                                     data-id="{{$landlord->id}}"
+                                    @if ($landlord_city->city)
                                     data-city= {{$landlord_city->city->id}}
+                                    @endif
                                     data-firstname="{{$landlord->firstname}}"
                                     data-lastname="{{$landlord->lastname}}"
                                     data-birth="{{$landlord->date_of_birth}}"

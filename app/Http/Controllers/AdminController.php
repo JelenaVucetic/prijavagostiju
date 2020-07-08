@@ -15,4 +15,18 @@ class AdminController extends Controller
 
         return view('admin.logs', compact('logs'));
     }
+
+    public function activate(Request $request, $id) {
+        $active = DB::table('users')
+                ->where('id', $id)
+                ->update(['active' => 1]);
+        return back()->with('message', "Uspješno ste aktivirali korisnika!");
+    }
+
+    public function deactivate(Request $request, $id) {
+        $deactivate = DB::table('users')
+            ->where('id', $id)
+            ->update(['active' => 0]);
+        return back()->with('message', "Uspješno ste deaktivirali korisnika!");
+    }
 }

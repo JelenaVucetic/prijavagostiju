@@ -78,6 +78,38 @@
   </div>
 {{-- End of Edit Modal --}}
 
+{{-- Delete modal --}}
+
+<div class="modal fade" id="deleteCityModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form id="delete-city-form" method="post" >
+      @csrf
+      @method('DELETE')
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Da li ste sigurni da želite da obrišete ovaj grad?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="city_name">Ime</label>
+              <input type="text" name="" id="city_name" disabled style="float: right;width: 50%;border-radius: 5px;">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" class="btn btn-primary  confirm-delete-city-btn">Da</button>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+{{-- End of Delete Modal --}}
+
+
+
 <div class="container">
     @if(session()->has('message'))
     <div class="alert alert-success">
@@ -126,11 +158,11 @@
                     </button>
                 </td>        
                 <td>
-                    <form action="{{ route('cities.destroy', $city->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Izbriši</button>
-                    </form>
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteCityModal"
+                        data-id="{{$city->id}}"
+                        data-name="{{$city->name}}">
+                    Izbriši</button>
+
                 </td>
                       
                      

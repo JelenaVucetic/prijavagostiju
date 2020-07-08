@@ -30,6 +30,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('admin')->group(function () {
     Route::get('/logs', 'AdminController@logs')->name('logs');
+    Route::post('/user/activate/{id}', 'AdminController@activate');
+    Route::post('/user/deactivate/{id}', 'AdminController@deactivate');
 });
 
 Route::middleware('inspector')->group(function () {

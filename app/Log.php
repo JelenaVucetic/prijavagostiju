@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Log extends Model
 {
     protected $table = 'logs';
-
+    public $timestamps = true;
     protected $fillable = [
         'user_id', 'activity', 'created_at', 'updated_at'
     ];

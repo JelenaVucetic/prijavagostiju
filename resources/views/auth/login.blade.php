@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+<div class="container" style="height: 60vh;">
+    @if(session()->has('message-error'))
+        <div class="alert alert-danger">
+        {{ session()->get('message-error') }}
+    </div>
+@endif
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
