@@ -18,15 +18,21 @@
           
               <div class="form-group">
                   <label for="name">Ime</label>
-                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required  value="{{ old('name') }}">
+                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required  value="{{ old('name') }}"
+                                  oninvalid="this.setCustomValidity('Molimo vas unesite ime grada')"
+                                  oninput="setCustomValidity('')">
               </div>
               <div class="form-group">
                 <label for="local_tax_underage" style="width: 45%;">Boravišna taksa za maljoletna lica</label>
-                <input id="local_tax_underage" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="local_tax_underage" required value="{{ old('local_tax_underage') }}" >
+                <input id="local_tax_underage" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="local_tax_underage" required value="{{ old('local_tax_underage') }}"
+                                      oninvalid="this.setCustomValidity('Molimo vas unesite boravišnu taksu.')"
+                                      oninput="setCustomValidity('')" >
                </div>
                <div class="form-group">
                 <label for="local_tax_adult" style="width: 45%;">Boravišna taksa za punoljetna lica</label>
-                <input id="local_tax_adult" style="float: right;width: 50%;border-radius: 5px;" type="number" name="local_tax_adult" required  value="{{ old('local_tax_adult') }}">
+                <input id="local_tax_adult" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="local_tax_adult" required  value="{{ old('local_tax_adult') }}"
+                                  oninvalid="this.setCustomValidity('Molimo vas unesite boravišnu taksu')"
+                                  oninput="setCustomValidity('')">
                </div>
              </div>
             <div class="modal-footer">
@@ -114,11 +120,13 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if(session()->has('message-error'))
     <div class="alert alert-danger">
             {{ session()->get('message-error') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if ($errors->any())

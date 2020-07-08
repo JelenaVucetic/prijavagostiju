@@ -55,7 +55,7 @@ class StateController extends Controller
         ]);
 
         $state->save();
-        return back()->with('success', 'Država je sačuvana!');
+        return back()->with('message', 'Država je sačuvana!');
     }
 
     /**

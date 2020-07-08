@@ -18,11 +18,15 @@
           
               <div class="form-group">
                   <label for="firstname">Ime</label>
-                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required value="{{ old('firstname') }}">
+                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required value="{{ old('firstname') }}" 
+                            oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                            oninput="this.setCustomValidity('')" >
               </div>
               <div class="form-group">
                 <label for="lastname">Prezime</label>
-                <input id="lastname" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="lastname" required value="{{ old('lastname') }}"  >
+                <input id="lastname" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="lastname" required value="{{ old('lastname') }}"  
+                          oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                            oninput="this.setCustomValidity('')" >
                </div>
                <div class="form-group">
                 <label for="gender">Pol</label>
@@ -33,7 +37,9 @@
                </div>
                <div class="form-group">
                     <label for="date_of_birth">Datum rođenja</label>
-                    <input type="date" id="date_of_birth" name="date_of_birth" value="" min="1920-07-01" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;"  value="{{ old('date_of_birth', date('Y-m-d'))}}" >
+                    <input type="date" id="date_of_birth" name="date_of_birth" min="1920-07-01" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;"  value="{{ old('date_of_birth', date('Y-m-d'))}}" required 
+                            oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                            oninput="this.setCustomValidity('')" >
                 </div>
                 <div class="form-group">
                     <label for="state_id">Državljanstvo</label>
@@ -52,11 +58,15 @@
                 </div>
                 <div class="form-group">
                     <label for="travel_document_number">Broj putne isprave</label>
-                    <input id="travel_document_number" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="travel_document_number" required value="{{ old('travel_document_number') }}" >
+                    <input id="travel_document_number" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="travel_document_number" required value="{{ old('travel_document_number') }}" 
+                            oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                            oninput="this.setCustomValidity('')" >
                 </div>
                 <div class="form-group">
                     <label for="expiration_date">Datum važenja putne isprave</label>
-                    <input type="date" id="expiration_date" name="expiration_date" value="" min="2020-07-01" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;"  value="{{ old('date_of_birth', date('Y-m-d'))}}" >
+                    <input type="date" id="expiration_date" name="expiration_date" required min="2020-07-01" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;"  value="{{ old('date_of_birth', date('Y-m-d'))}}" 
+                          oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                            oninput="this.setCustomValidity('')" >
                 </div>
             </div>
         <div class="modal-footer">

@@ -9,7 +9,6 @@ use DatePeriod;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class PDFController extends Controller
 {

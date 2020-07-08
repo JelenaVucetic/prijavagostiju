@@ -4,7 +4,7 @@
 
 {{-- Create Modal --}}
 <div class="modal fade" id="landlordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="{{ route('landlords.store') }}" method="POST">
+    <form action="{{ route('landlords.store') }}" method="POST" id="test-forma">
         @csrf
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -18,26 +18,35 @@
           
               <div class="form-group">
                   <label for="firstname">Ime</label>
-                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required value="{{ old('firstname') }}" >
+                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required value="{{ old('firstname') }}"
+                  oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                  oninput="this.setCustomValidity('')" >
               </div>
               <div class="form-group">
                 <label for="lastname">Prezime</label>
-                <input id="lastname" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="lastname" required value="{{ old('lastname') }}" >
+                <input id="lastname" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="lastname" required value="{{ old('lastname') }}" 
+                oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                oninput="this.setCustomValidity('')">
                </div>
                <div class="form-group">
                     <label for="date_of_birth">Datum rođenja</label>
-                    <input type="date" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', date('Y-m-d'))}}"  min="1920-01-07" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;" value="{{ old('date_of_birth') }}">
+                    <input type="date" id="date_of_birth" name="date_of_birth" min="1920-01-07" max="2030-12-31"  style="float: right;width: 50%;padding: 5px;" value="{{ old('date_of_birth') }}"
+                    oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
                     <label for="jmbg">JMBG</label>
                     <input 
                     oninput="javascript: if (this.value.length > this.maxLength ) this.value = this.value.slice(0, this.maxLength);"
                     type = "number"
-                    maxlength = "13" minlength="13" id="jmbg" name="jmbg"  style="float: right;width: 50%;border-radius: 5px;"  value="{{ old('jmbg') }}"  >
+                    maxlength = "13" minlength="13" id="jmbg" name="jmbg"  style="float: right;width: 50%;border-radius: 5px;"  value="{{ old('jmbg') }}" 
+                     >
                 </div>
                 <div class="form-group">
                     <label for="address">Adresa</label>
-                    <input id="address" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="address" required  value="{{ old('address') }}" >
+                    <input id="address" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="address" required  value="{{ old('address') }}" 
+                    oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                    oninput="this.setCustomValidity('')">
                 </div>
                 <div class="form-group">
                     <label for="city_id">Grad</label>
@@ -154,6 +163,7 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if ($errors->any())

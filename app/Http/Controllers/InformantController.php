@@ -115,12 +115,22 @@ class InformantController extends Controller
     }
 
     public function payoff(Request $request) {
-        $total = $request->totalNew;
-        $amount = $request->amount;
+        $request->validate([
+            'amount'=>'required'
+        ],
+        [
+            'amount.required' => 'Unesite vrijednost za razduživanje'
+        ]);
+
+        $total = (float)$request->totalNew;
+        $amount = (float)$request->amount;
         $newTotal = $total-$amount;
+        if($newTotal < 0) {
+            return back()->with('message-error', 'Vrijednost ne može biti manja od 0');
+        }
         $debts = DB::table('landlords')
               ->where('id', $request->landlordid)
               ->update(['debt' => $newTotal]);
-    return back()->with('message', 'Uspješno');
+        return back()->with('message', 'Uspješno');
     }
 }

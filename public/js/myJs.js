@@ -207,14 +207,19 @@ $('#editDebtModal').on('show.bs.modal', function (event) {
      modal.find('.modal-body #debtid').val(debtid) 
      modal.find('.modal-body #landlordid').val(id) 
 
-     modal.find('.confirm-debt-btn').on('click', function (e) {
+     document.getElementById('edit-debt-form').action = '/payoff/' + id;
+
+   /*  
         e.preventDefault();
-        var submitUrl =  '/payoff/' + id,
+        var submitUrl =  ,
         form = $('#edit-debt-form'); // change with your form
 
         form.attr('action', submitUrl);
+
+       
+        
         form.submit();
-  })
+  }) */
 });
 
 $('#deleteGuestModal').on('show.bs.modal', function (event) {

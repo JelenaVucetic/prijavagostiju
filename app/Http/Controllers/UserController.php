@@ -72,7 +72,7 @@ class UserController extends Controller
             'role' => $request->get('role')
         ]);
         $user->save();
-        return back()->with('success', 'Korsinik je sačuvan!');
+        return back()->with('message', 'Korsinik je sačuvan!');
     }
 
     /**

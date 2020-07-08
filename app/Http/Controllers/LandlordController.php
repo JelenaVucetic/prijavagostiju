@@ -76,7 +76,7 @@ class LandlordController extends Controller
         ]);
 
         $landlord->save();
-        return back()->with('success', 'Stanodavac je sačuvan!');
+        return back()->with('message', 'Stanodavac je sačuvan!');
     }
 
     /**

@@ -17,7 +17,7 @@
         <div class="modal-body">
               <div class="form-group">
                   <label for="firstname">Ime</label>
-                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required minlength="3" maxlength="50" value="{{ old('firstname') }}">
+                  <input id="firstname" style="float: right;width: 50%;border-radius: 5px;" type="text" name="firstname" required minlength="3" maxlength="50" value="{{ old('firstname') }}" >
               </div>
               <div class="form-group">
                 <label for="lastname">Prezime</label>
@@ -153,11 +153,13 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if(session()->has('message-error'))
     <div class="alert alert-danger">
             {{ session()->get('message-error') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if ($errors->any())

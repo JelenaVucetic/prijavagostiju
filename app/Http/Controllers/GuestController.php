@@ -83,7 +83,7 @@ class GuestController extends Controller
         ]);
 
         $guest->save();
-        return back()->with('messages', 'Gost je sačuvan!');
+        return back()->with('message', 'Gost je sačuvan!');
     }
 
     /**

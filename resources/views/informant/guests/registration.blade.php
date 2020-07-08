@@ -5,11 +5,13 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if(session()->has('message-error'))
     <div class="alert alert-danger">
             {{ session()->get('message-error') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     <h1>REGISTRACIJA GOSTA</h1>

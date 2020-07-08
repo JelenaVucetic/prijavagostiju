@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 {{-- Edit modal --}}
 
 <div class="modal fade" id="editDebtModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <form method="post" id="edit-debt-form" >
         @csrf
     <div class="modal-dialog" role="document">
@@ -49,7 +52,9 @@
                </div>
                <div class="form-group">
                 <label for="amount">Iznos za razduživanje</label>
-                <input id="amount" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="amount" required>
+                <input id="amount" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="amount" required 
+                oninvalid="this.setCustomValidity('Ovo polje je obavezno')"
+                oninput="this.setCustomValidity('')">
                </div>
                <input type="hidden" id="totalNew" name="totalNew">
                <input type="hidden" id="debtid" name="debtid">
@@ -57,7 +62,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
-          <button type="button" class="btn btn-primary  confirm-debt-btn">Sačuvaj</button>
+          <button type="submit" class="btn btn-primary  confirm-debt-btn">Sačuvaj</button>
         </div>
       </div>
     </div>
@@ -67,6 +72,19 @@
 
 
 <div class="container">
+  @if(session()->has('message'))
+<div class="alert alert-success">
+        {{ session()->get('message') }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+@endif
+
+@if(session()->has('message-error'))
+<div class="alert alert-danger">
+        {{ session()->get('message-error') }}
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+@endif
 <h1 style="text-align: center;margin:30px 0;">Zaduženja</h1>
 
     <table id="debt-table">
@@ -92,7 +110,12 @@
                 <td>{{$landlord->jmbg}}</td>              
                 <td>{{$landlord->address}}</td>
                 <td>{{$landlord->name}}</td>
+                @if ($landlord->debt)
                 <td>{{$landlord->debt}}&euro;</td>
+                @else 
+                <td>0&euro;</td>
+                @endif
+              
                 <td><button class="btn btn-info"
                     data-toggle="modal" data-target="#editDebtModal" 
                                     data-id="{{$landlord->id}}"

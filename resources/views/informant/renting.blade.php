@@ -7,6 +7,7 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
 
@@ -29,7 +30,7 @@
             <tr>
                 <td>{{$rent->check_in}}</td>
                 <td>{{$rent->check_out}}</td>
-                <td>{{$rent->price}}</td>
+                <td>{{$rent->price}}&euro;</td>
                 <td>{{$rent->userName}}</td>              
                 <td>{{$rent->lordFirstname}}</td>
                 <td>{{$rent->name}}</td>

@@ -17,7 +17,9 @@
         <div class="modal-body">        
               <div class="form-group">
                   <label for="name">Naziv</label>
-                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required value="{{ old('name') }}">
+                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required value="{{ old('name') }}" 
+                          oninvalid="this.setCustomValidity('Molim vas unesite ime države')"
+                          oninput="this.setCustomValidity('')" >
               </div>
              </div>
             <div class="modal-footer">
@@ -95,6 +97,7 @@
     @if(session()->has('message'))
     <div class="alert alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if ($errors->any())
