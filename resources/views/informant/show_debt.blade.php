@@ -45,7 +45,7 @@
               </div>
                <div class="form-group">
                 <label for="total">Ukupno zaduženje</label>
-                <input id="total" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="total" disabled  >
+                <input id="total" style="float: right;width: 50%;border-radius: 5px;" type="text"  name="total" disabled  > 
                </div>
                <div class="form-group">
                 <label for="amount">Iznos za razduživanje</label>
@@ -92,7 +92,7 @@
                 <td>{{$landlord->jmbg}}</td>              
                 <td>{{$landlord->address}}</td>
                 <td>{{$landlord->name}}</td>
-                <td>{{$landlord->debt}}</td>
+                <td>{{$landlord->debt}}&euro;</td>
                 <td><button class="btn btn-info"
                     data-toggle="modal" data-target="#editDebtModal" 
                                     data-id="{{$landlord->id}}"
@@ -104,7 +104,7 @@
                                     data-address="{{$landlord->address}}"
                                     data-city="{{$landlord->cityId}}"
                                     data-name="{{$landlord->name}}"
-                                    data-total="{{$landlord->debt}}">
+                                    data-total="{{$landlord->debt}} €" >
                         Razudži
                     </button>
                 </td>       

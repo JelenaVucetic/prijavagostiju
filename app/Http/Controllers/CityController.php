@@ -64,7 +64,7 @@ class CityController extends Controller
         ]);
 
         $city->save();
-        return back()->with('success', 'Grad je sačuvan!');
+        return back()->with('message', 'Grad je sačuvan!');
     }
 
     /**

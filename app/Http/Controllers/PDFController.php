@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PDF;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class PDFController extends Controller
 {
@@ -24,6 +25,8 @@ class PDFController extends Controller
          $data = ['guestName' => $info->guestName];
         $pdf = PDF::loadView('myPDF', $data);
   
-        return $pdf->download('itsolutionstuff.pdf',);
+$current_date_time = Carbon::now()->toDateTimeString();
+
+        return $pdf->download($current_date_time.'.pdf',);
     }
 }

@@ -18,11 +18,11 @@
           
               <div class="form-group">
                   <label for="name">Ime</label>
-                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required required value="{{ old('name') }}">
+                  <input id="name" style="float: right;width: 50%;border-radius: 5px;" type="text" name="name" required  value="{{ old('name') }}">
               </div>
               <div class="form-group">
                 <label for="local_tax_underage" style="width: 45%;">Boravišna taksa za maljoletna lica</label>
-                <input id="local_tax_underage" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="local_tax_underage" required required value="{{ old('local_tax_underage') }}" >
+                <input id="local_tax_underage" style="float: right;width: 50%;border-radius: 5px;" type="number" step="0.01" name="local_tax_underage" required value="{{ old('local_tax_underage') }}" >
                </div>
                <div class="form-group">
                 <label for="local_tax_adult" style="width: 45%;">Boravišna taksa za punoljetna lica</label>

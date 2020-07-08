@@ -179,8 +179,9 @@
 
 <div class="container">
     @if(session()->has('message'))
-    <div class="alert alert-success">
+    <div class="alert alert-dismissible alert-success">
             {{ session()->get('message') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     @endif
     @if ($errors->any())
