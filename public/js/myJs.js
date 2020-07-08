@@ -267,6 +267,76 @@ $('#deleteLandlordModal').on('show.bs.modal', function (event) {
   })
 });
 
+$('#deleteUserModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var firstname = button.data('name') // Extract info from data-* attributes3
+
+    var id = button.data('id')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #firstname_user').val(firstname) 
+
+     modal.find('.confirm-delete-user-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/users/' + id,
+            form = $('#delete-user-form'); // change with your form
+    
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
+
+$('#deleteCityModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var name = button.data('name') // Extract info from data-* attributes3
+
+    var id = button.data('id')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #city_name').val(name) 
+
+     modal.find('.confirm-delete-city-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/cities/' + id,
+            form = $('#delete-city-form'); // change with your form
+    
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
+
+$('#deleteStateModal').on('show.bs.modal', function (event) {
+    
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var name = button.data('name') // Extract info from data-* attributes3
+
+    var id = button.data('id')
+    // If necessary, you could intiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this)
+
+     modal.find('.modal-body #state_name').val(name) 
+
+     modal.find('.confirm-delete-state-btn').on('click', function (e) {
+        e.preventDefault();
+        var submitUrl =  '/states/' + id,
+            form = $('#delete-state-form'); // change with your form
+    
+        form.attr('action', submitUrl);
+        form.submit();
+  })
+});
+
+
+
 var number = $('#number').val();
   
 var names = [];

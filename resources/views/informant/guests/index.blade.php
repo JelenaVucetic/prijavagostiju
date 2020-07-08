@@ -220,8 +220,13 @@
                 <td>{{$guest->firstname}}</td>
                 <td>{{$guest->lastname}}</td>
                 <td>{{$guest->gender}}</td>
-                <td>{{$guest->date_of_birth}}</td>              
+                <td>{{$guest->date_of_birth}}</td> 
+                @if ($guest_state->state)
                 <td>{{$guest_state->state->name}}</td>
+                @else 
+                <td style="color:red">Unesite državu</td>
+                @endif             
+                
                 <td>{{$guest->travel_document}}</td>
                 <td>{{$guest->travel_document_number}}</td>
                 <td>{{$guest->expiration_date}}</td>
@@ -229,7 +234,9 @@
                 <td>
                     <button type="button" class="btn btn-info test"  data-toggle="modal" data-target="#editGuestModal" 
                                     data-id="{{$guest->id}}"
+                                    @if ($guest_state->state)
                                     data-state= {{$guest_state->state->id}}
+                                    @endif
                                     data-firstname="{{$guest->firstname}}"
                                     data-lastname="{{$guest->lastname}}"
                                     data-gender="{{$guest->gender}}"
